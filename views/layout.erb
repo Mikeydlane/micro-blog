@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Micro Blog</title>
+<link rel="stylesheet" type="text/css" href="/css/default.css">
+kfjnefkwe
+</head>
+<body>
+	<% if flash[:message] %>
+	<div id="notice"><%= flash[:message] %></div>
+	<% end %>
+
+	<%= erb :login %>
+
+	
+	<%= yield %>
+</body>
+</html>
