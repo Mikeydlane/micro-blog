@@ -12,7 +12,7 @@ before do
 	current_user
 end
 
-before ['/posts/new','/posts'] do
+before ['/posts/new','/posts','/user/profile'] do
 	redirect '/' unless @current_user
 end
 
@@ -38,6 +38,21 @@ get '/user/signup' do
   erb :sign_up
 end
 
+get '/user/profile' do
+	erb :profile
+end
+
+# post 'user/profile' do
+# 	 @current_user.update({
+# 		firstname: params[:firstname],
+# 		lastname: params[:lastname],
+# 		picture: params[:picture],
+# 		bio: params[:bio]
+# 	})
+#
+# 	redirect '/user/profile'
+# end
+
 post '/user/signup' do
 	user = User.new({
 		firstname: params[:firstname],
@@ -46,7 +61,7 @@ post '/user/signup' do
 		password: params[:password]
 	})
 	user.save
-
+  redirect '/user/profile'
 end
 
 post '/user' do
@@ -58,13 +73,13 @@ post '/user' do
 		bio: params[:bio]
 	})
 
-	redirect '/user/edit'
+	redirect '/user/profile'
 end
 
 
 post '/posts' do
 	post = Post.new({
-	created_at: nil,
+	create_at: nil,
 	content: params[:content],
 	content_url: nil,
 	rating: nil,
@@ -82,7 +97,7 @@ post '/login' do
 
 		session[:user_id] = user.id
 		flash[:message] = "Welcome"
-		redirect '/'
+		redirect '/user/profile'
 	else
 
 		flash[:message] = "Incorrect username and/or password. Try again."
