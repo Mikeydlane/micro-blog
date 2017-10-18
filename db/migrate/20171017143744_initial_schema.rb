@@ -1,7 +1,7 @@
 class InitialSchema < ActiveRecord::Migration[5.1]
   def change
   	create_table :users do |t|
-  		t.integer :username
+  		t.string :username
   		t.string :password
   		t.string :picture
   		t.text :bio

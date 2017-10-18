@@ -1,0 +1,15 @@
+<img src="<%= @current_user.picture %>" alt="">
+
+<form method="POST" action="/user">
+  <p>First Name: </p>
+  <input type="text" name="firstname" value="<%= @current_user.firstname %>" />
+  <p>Last Name: </p>
+  <input type="text" name="lastname" value="<%= @current_user.lastname %>" />
+  <p>Picture: </p>
+  <input type="text" name="picture" value="<%= @current_user.picture %>" />
+
+  <p>Bio: </p>
+  <textarea name="bio"><%= @current_user.bio %></textarea>
+
+  <input type="submit" name="submit" value="Submit" />
+</form>

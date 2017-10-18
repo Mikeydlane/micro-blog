@@ -8,7 +8,7 @@ enable :sessions
 set :database, {adapter: 'sqlite3', database: 'mb.sqlite3'}
 
 
-before do 
+before do
 	current_user
 end
 
@@ -18,7 +18,7 @@ end
 
 get '/' do
 	@posts = Post.all
-	erb :home	
+	erb :home
 end
 
 get '/posts' do
@@ -30,10 +30,41 @@ get '/posts/new' do
 	erb :new_post
 end
 
+get '/user/edit' do
+ 	erb :edit_user
+end
+
+get '/user/signup' do
+  erb :sign_up
+end
+
+post '/user/signup' do
+	user = User.new({
+		firstname: params[:firstname],
+		lastname: params[:lastname],
+		username: params[:username],
+		password: params[:password]
+	})
+	user.save
+
+end
+
+post '/user' do
+	puts params
+	@current_user.update({
+		firstname: params[:firstname],
+		lastname: params[:lastname],
+		picture: params[:picture],
+		bio: params[:bio]
+	})
+
+	redirect '/user/edit'
+end
+
 
 post '/posts' do
 	post = Post.new({
-	create_at: nil,
+	created_at: nil,
 	content: params[:content],
 	content_url: nil,
 	rating: nil,
@@ -47,8 +78,7 @@ end
 
 post '/login' do
 	user = User.find_by(username: params[:username])
-
-	if user && user.password == params[:password]
+  	if user && user.password == params[:password]
 
 		session[:user_id] = user.id
 		flash[:message] = "Welcome"
@@ -69,6 +99,3 @@ end
 def current_user
 	@current_user = User.find(session[:user_id]) if session[:user_id]
 end
-
-
-
