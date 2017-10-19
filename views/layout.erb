@@ -5,6 +5,8 @@
 <title>Micro Blog</title>
 <link rel="stylesheet" type="text/css" href="/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="/css/skeleton.css">
+
+
 <link rel="stylesheet" type="text/css" href="/css/default.css">
 
 </head>
@@ -12,11 +14,12 @@
 	<% if flash[:message] %>
 	<div id="notice"><%= flash[:message] %></div>
 	<% end %>
-
+  <%= erb :navbar %>
 	<%= erb :login %>
 
-
-
 	<%= yield %>
+
+
+
 </body>
 </html>

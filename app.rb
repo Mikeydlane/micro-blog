@@ -17,7 +17,6 @@ before ['/posts/new','/posts','/user/profile'] do
 end
 
 get '/' do
-	@posts = Post.all
 	erb :home
 end
 
@@ -103,6 +102,15 @@ post '/login' do
 		flash[:message] = "Incorrect username and/or password. Try again."
 		redirect back
 	end
+end
+
+delete "/user/:user_id" do
+    user = User.find(session[:user_id])
+    user.posts.destroy_all
+    user.destroy
+    session[:user_id]= nil
+    flash[:message] = "Account Deleted"
+    redirect '/'
 end
 
 get '/logout' do

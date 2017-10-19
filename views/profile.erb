@@ -1,10 +1,26 @@
 
-<img src="<%= @current_user.picture %>" alt="">
-<h3><%= @current_user.username %></h3>
-<h5><%= @current_user.firstname %></h5>
-<h5><%= @current_user.lastname %></h5>
-<h5><%= @current_user.bio %></h5>
 
-<a href="/user/edit">Update Profile</a>
-<a href="/">Home</a>
-<a href="/posts/new">New Post</a>
+
+
+
+
+
+
+
+<div class="content">
+  <div class="card">
+    <div class="firstinfo"><img src="<%= @current_user.picture %>" alt="">
+      <div class="profileinfo">
+        <h1><%= @current_user.firstname %></h1>
+        <h1><%= @current_user.lastname %></h1>
+
+        <h3><%= @current_user.username %></h3>
+        <p class="bio"><%= @current_user.bio %></p>
+        <a href="/user/edit">Update Profile</a>
+        <a href="/">Home</a>
+        <a href="/posts/new">New Post</a>
+      </div>
+    </div>
+  </div>
+  <div class="badgescard"> <span class="devicons devicons-django"></span><span class="devicons devicons-python"> </span><span class="devicons devicons-codepen"></span><span class="devicons devicons-javascript_badge"></span><span class="devicons devicons-gulp"></span><span class="devicons devicons-angular"></span><span class="devicons devicons-sass"> </span></div>
+</div>

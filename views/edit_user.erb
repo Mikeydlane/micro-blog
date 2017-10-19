@@ -1,3 +1,5 @@
+
+
 <img src="<%= @current_user.picture %>" alt="">
 
 <form method="POST" action="/user">
@@ -12,4 +14,10 @@
   <textarea name="bio"><%= @current_user.bio %></textarea>
 
   <input type="submit" name="submit" value="Submit" />
+</form>
+
+
+<form method="post" action="/user/<%= current_user.id %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Account" />
 </form>
